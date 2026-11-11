@@ -2,12 +2,25 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" id="meta-viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* Exibição escolhida pelo usuário (Computador ou Celular) — aplicada antes de desenhar, sem modo automático. */
+(function () {
+  var m = 'computador';
+  try { m = (JSON.parse(localStorage.getItem('vt_ui') || '{}').modo) || 'computador'; } catch (e) {}
+  if (m !== 'celular') m = 'computador';
+  window.__vtModo = m;
+  if (m === 'computador' && Math.min(screen.width, screen.height) < 820)   // telefone em modo computador: tela inteira, com zoom
+    document.getElementById('meta-viewport').setAttribute('content', 'width=1100');
+  document.documentElement.classList.add('modo-' + m);
+})();
+</script>
 <meta name="theme-color" content="#094488">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Validador">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
 <title>Validador Tributário · Contrato</title>
 <link rel="icon" href="data:image/png;base64,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">
 <link rel="apple-touch-icon" href="data:image/png;base64,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">
@@ -18,6 +31,8 @@
 --fundo:#f3f5f8;--branco:#fff;--bad:#b91c1c;--warn:#b45309;--ok:#047857;--fs:15px}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent}
 body{font-family:Inter,'Segoe UI',Arial,sans-serif;font-size:var(--fs);color:var(--txt);background:var(--fundo)}
 [hidden]{display:none!important}
 button{font:inherit;cursor:pointer;border-radius:9px;border:1px solid var(--borda2);background:#fff;color:var(--txt2);padding:7px 13px;font-weight:600}
@@ -169,13 +184,18 @@ body.cel .so-pc{display:none}
 body.cel .so-cel{display:inline-block}
 .cards{display:none}
 body.cel #topo{padding:8px 10px;gap:8px}
-body.cel .logo-topo{height:26px}
+body.cel .logo-topo{height:22px}
 body.cel .topo-titulo{display:none}
-body.cel .busca-topo{order:9;flex:1 1 100%;max-width:none;min-width:0}
-body.cel .comp{margin-left:auto;padding:2px 4px}
+body.cel .busca-topo{order:9;flex:1 1 0;max-width:none;min-width:0}
+body.cel .topo-modo{order:10}
+body.cel .busca-topo,body.cel .topo-modo{margin-top:2px}
+body.cel #topo::after{content:'';order:8;flex-basis:100%;height:0}
+body.cel .comp{margin-left:auto;padding:1px 2px;gap:2px}
+body.cel .comp button.ico{padding:4px 8px;min-height:34px}
 body.cel .comp-rot{display:none}
 body.cel .comp-mes{min-width:76px;padding:4px}
-body.cel .nuvem{padding:7px 9px}
+body.cel .nuvem{padding:6px 9px;min-height:34px}
+body.cel #bt-menu{min-height:34px}
 body.cel #nuvem-txt{display:none}
 body.cel #corpo{display:block;min-height:0}
 body.cel #app{height:auto;min-height:100%}
@@ -242,6 +262,26 @@ body.cel #modal-fundo{align-items:flex-end}
 body.cel #toast{left:10px;right:10px;bottom:calc(70px + env(safe-area-inset-bottom));max-width:none}
 body.cel .menu{position:fixed;left:8px;right:8px;top:56px;min-width:0}
 
+/* seletor Computador / Celular (escolha do usuário, sem automático) */
+.seg-modo{display:inline-flex;border:1px solid var(--borda2);border-radius:10px;overflow:hidden;background:#fff}
+.seg-modo button{border:none;border-radius:0;padding:6px 11px;font-size:.88em;background:#fff;color:var(--txt2)}
+.seg-modo button+button{border-left:1px solid var(--borda2)}
+.seg-modo button.on{background:var(--navy);color:#fff}
+.exib-login{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px}
+body.cel .topo-modo span{display:none}
+body.cel .topo-modo button{padding:6px 10px;font-size:1.05em}
+/* iPhone 15 e parecidos: ilha dinâmica, barra inferior, sem zoom ao digitar */
+body.cel #topo{padding-top:calc(8px + env(safe-area-inset-top));padding-left:calc(10px + env(safe-area-inset-left));padding-right:calc(10px + env(safe-area-inset-right))}
+body.cel .tela-centro{padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom)}
+body.cel .cartao-login{padding:26px 22px;width:100%}
+body.cel .cards{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+body.cel #app{min-height:100dvh}
+body.cel{overscroll-behavior-y:none}
+body.cel input,body.cel select,body.cel textarea{font-size:16px}
+body.cel button{min-height:40px}
+body.cel .card-nome{font-size:1.02em}
+@supports (-webkit-touch-callout:none){body.cel .rodape-ap{padding-bottom:calc(10px + env(safe-area-inset-bottom))}}
+
 </style>
 </head>
 <body>
@@ -264,6 +304,8 @@ body.cel .menu{position:fixed;left:8px;right:8px;top:56px;min-width:0}
     <label>Senha<input id="lg-senha" type="password" autocomplete="current-password" required></label>
     <p id="lg-erro" class="erro" hidden></p>
     <button class="pri grande" type="submit">Entrar</button>
+    <div class="exib-login"><span class="mut">Exibir como</span>
+      <div class="seg-modo"><button type="button" data-m="computador">🖥 Computador</button><button type="button" data-m="celular">📱 Celular</button></div></div>
   </form>
 </div>
 
@@ -280,6 +322,7 @@ body.cel .menu{position:fixed;left:8px;right:8px;top:56px;min-width:0}
       <input id="comp" type="month" class="comp-picker" tabindex="-1">
       <button id="comp-prox" class="ico" title="Próximo mês">›</button>
     </div>
+    <div class="seg-modo topo-modo" title="Como exibir o site neste aparelho"><button type="button" data-m="computador" title="Exibir como computador">🖥<span> Computador</span></button><button type="button" data-m="celular" title="Exibir como celular">📱<span> Celular</span></button></div>
     <button id="bt-nuvem" class="nuvem" title="Sincronização com a nuvem"><span class="ponto"></span><span id="nuvem-txt">Nuvem</span></button>
     <div class="menu-wrap">
       <button id="bt-menu" class="ico" title="Mais opções">☰</button>
@@ -288,7 +331,7 @@ body.cel .menu{position:fixed;left:8px;right:8px;top:56px;min-width:0}
         <button data-acao="atualizar">Atualizar da nuvem</button>
         <button data-acao="rel-carteira">Imprimir resumo da carteira</button>
         <button data-acao="tamanho">Tamanho do texto: <b id="rot-tam"></b></button>
-        <button data-acao="modo">Exibição: <b id="rot-modo"></b></button>
+        <button data-acao="modo">Exibição: <b id="rot-modo"></b> (trocar)</button>
         <button data-acao="sair">Sair</button>
       </div>
     </div>
@@ -558,12 +601,29 @@ const P = (() => { try { return JSON.parse(localStorage.getItem('vt_ui') || '{}'
 const UI = {
   filtro: P.filtro || 'sel', busca: '', ordem: P.ordem || { c: 'ordem', dir: 1 }, atual: null, aba: P.aba || 'resumo', etapa: 1,
   tabelaAberta: !!P.tabelaAberta, alturaMestre: P.alturaMestre || null, fs: P.fs || 15, emp: null, linhas: [],
-  modo: P.modo || 'auto', telaCel: 'lista',
+  modo: P.modo === 'celular' ? 'celular' : 'computador', telaCel: 'lista',
 };
 const gravarUI = () => { try { localStorage.setItem('vt_ui', JSON.stringify({ filtro: UI.filtro, ordem: UI.ordem, aba: UI.aba, tabelaAberta: UI.tabelaAberta, alturaMestre: UI.alturaMestre, fs: UI.fs, modo: UI.modo })); } catch (_) {} };
 /** Celular: escolhido no menu, ou automático quando a tela é estreita (telefone / janela pequena). */
-const MODOS = { auto: 'Automático', computador: 'Computador', celular: 'Celular' };
-const ehCel = () => UI.modo === 'celular' || (UI.modo === 'auto' && window.innerWidth < 820);
+const MODOS = { computador: 'Computador', celular: 'Celular' };
+const ehCel = () => UI.modo === 'celular';            // só o que o usuário escolheu (sem automático)
+function trocarModo(m) {
+  if (!MODOS[m] || m === UI.modo) return;
+  UI.modo = m; gravarUI();
+  const telefone = Math.min(screen.width, screen.height) < 820;
+  const vp = document.getElementById('meta-viewport');
+  if (vp) vp.setAttribute('content', m === 'computador' && telefone ? 'width=1100' : 'width=device-width, initial-scale=1, viewport-fit=cover');
+  document.documentElement.classList.toggle('modo-celular', m === 'celular');
+  document.documentElement.classList.toggle('modo-computador', m === 'computador');
+  aplicarLayout();
+  if (!$('#app').hidden) avisar('Exibindo como ' + MODOS[m].toLowerCase() + '.');
+}
+document.addEventListener('click', (e) => { const b = e.target.closest('.seg-modo button[data-m]'); if (b) trocarModo(b.dataset.m); });
+function marcarModo() {
+  document.body.classList.toggle('cel', ehCel());
+  $$('.seg-modo button').forEach((b) => b.classList.toggle('on', b.dataset.m === UI.modo));
+}
+marcarModo();
 document.documentElement.style.setProperty('--fs', UI.fs + 'px');
 
 // ------------------------------------------------------------------ Supabase: leitura paginada
@@ -697,8 +757,8 @@ async function redesenhar() {
 
 function aplicarLayout() {
   const cel = ehCel();
-  document.body.classList.toggle('cel', cel);
-  $('#rot-modo').textContent = MODOS[UI.modo] + (UI.modo === 'auto' ? (cel ? ' (celular)' : ' (computador)') : '');
+  marcarModo();
+  $('#rot-modo').textContent = MODOS[UI.modo];
   $('#rot-tam').textContent = { 14: 'Normal', 15: 'Médio', 16.5: 'Grande', 18: 'Muito grande' }[UI.fs] || UI.fs;
   if ($('#comp').value) $('#comp-rot').textContent = nomeMes($('#comp').value);
   $('#busca').placeholder = cel ? 'Buscar empresa ou CNPJ' : 'Buscar empresa ou CNPJ…  ( / )';
@@ -1077,7 +1137,7 @@ async function imprimir(tipo, id) {
   const r = await M('relatorio', tipo, id || null);
   if (!r.ok) { w && w.close(); return avisar(r.erro); }
   if (!w) return avisar('O navegador bloqueou a nova aba. Libere pop-ups para este site.');
-  w.document.open(); w.document.write(r.html.split('/logo_navy.png').join(LOGO).split('/img/logo_navy.png').join(LOGO)); w.document.close();
+  w.document.open(); w.document.write(r.html.split('/img/logo_navy.png').join(LOGO).split('/logo_navy.png').join(LOGO)); w.document.close();
 }
 
 // ------------------------------------------------------------------ competência
@@ -1100,10 +1160,7 @@ $('#menu').addEventListener('click', async (e) => {
   if (a === 'sair') { await enviar(); await sb.auth.signOut(); location.reload(); }
   if (a === 'atualizar') atualizarNuvem();
   if (a === 'rel-carteira') imprimir('carteira');
-  if (a === 'modo') {
-    const op = ['auto', 'computador', 'celular']; UI.modo = op[(op.indexOf(UI.modo) + 1) % op.length];
-    gravarUI(); aplicarLayout(); avisar('Exibição: ' + MODOS[UI.modo] + '.');
-  }
+  if (a === 'modo') trocarModo(UI.modo === 'celular' ? 'computador' : 'celular');
   if (a === 'tamanho') {
     const op = [14, 15, 16.5, 18]; UI.fs = op[(op.indexOf(UI.fs) + 1) % op.length];
     document.documentElement.style.setProperty('--fs', UI.fs + 'px'); gravarUI(); aplicarLayout();
